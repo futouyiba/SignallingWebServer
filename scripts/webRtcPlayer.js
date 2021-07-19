@@ -49,6 +49,7 @@
             var video = document.createElement('video');
 
             video.id = "streamingVideo";
+            video.style.left = '0'
             video.playsInline = true;
             video.addEventListener('loadedmetadata', function(e){
                 if(self.onVideoInitialised){

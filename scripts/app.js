@@ -215,10 +215,15 @@ function sendQualityConsoleCommands(descriptor) {
 function setOverlay(htmlClass, htmlElement, onClickFunction) {
 	var videoPlayOverlay = document.getElementById('videoPlayOverlay');
 	if (!videoPlayOverlay) {
-		var playerDiv = document.getElementById('player');
+		// var playerDiv = document.getElementById('player');
+		var screenDiv = document.getElementById('screenWrapper');
 		videoPlayOverlay = document.createElement('div');
 		videoPlayOverlay.id = 'videoPlayOverlay';
-		playerDiv.appendChild(videoPlayOverlay);
+		videoPlayOverlay.style.position = 'absolute'
+		videoPlayOverlay.style.zIndex = '3'
+		videoPlayOverlay.style.top = '0'
+		videoPlayOverlay.style.left = '0'
+		screenDiv.appendChild(videoPlayOverlay);
 	}
 
 	// Remove existing html child elements so we can add the new one

@@ -57,6 +57,18 @@ function log(str) {
 	console.log(`${Math.floor(Date.now() - t0)}: ` + str);
 }
 
+let isFocus = false
+function focusOnAvatar(){
+	let checkBox = document.getElementById('enlarge-display-to-fill-window-tgl'),
+		displayDom =  document.getElementById('display')
+	isFocus = checkBox.checked
+	if (isFocus){
+		displayDom.classList.add('focus')
+	} else {
+		displayDom.classList.remove('focus')
+	}
+}
+
 function setupHtmlEvents() {
 	//Window events
 	window.addEventListener('resize', resizePlayerStyle, true);
@@ -69,7 +81,9 @@ function setupHtmlEvents() {
 	let resizeCheckBox = document.getElementById('enlarge-display-to-fill-window-tgl');
 	if (resizeCheckBox !== null) {
 		resizeCheckBox.onchange = function (event) {
-			resizePlayerStyle();
+			//todo
+			focusOnAvatar()
+			// resizePlayerStyle();
 		};
 	}
 
@@ -746,6 +760,7 @@ function resizeFreezeFrameOverlay() {
 }
 
 function resizePlayerStyle(event) {
+	return;
 	var playerElement = document.getElementById('player');
 
 	if (!playerElement)

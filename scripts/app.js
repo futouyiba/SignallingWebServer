@@ -388,6 +388,8 @@ var VideoEncoderQP = "N/A";
 
 function setupWebRtcPlayer(htmlElement, config) {
 	webRtcPlayerObj = new webRtcPlayer({ peerConnectionOptions: config.peerConnectionOptions });
+	webRtcPlayerObj.video.style.left = '0'
+	webRtcPlayerObj.video.style.zIndex = '999'
 	htmlElement.appendChild(webRtcPlayerObj.video);
 	htmlElement.appendChild(freezeFrameOverlay);
 

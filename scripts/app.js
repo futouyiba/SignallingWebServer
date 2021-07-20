@@ -1612,8 +1612,9 @@ function connect() {
 
 // Config data received from WebRTC sender via the Cirrus web server
 function onConfig(config) {
-	let playerDiv = document.getElementById('player');
-	let playerElement = setupWebRtcPlayer(playerDiv, config);
+	// let playerDiv = document.getElementById('player');
+	let screenDiv = document.getElementById('screenWrapper');
+	let playerElement = setupWebRtcPlayer(screenDiv, config);
 	resizePlayerStyle();
 
 	switch (inputOptions.controlScheme) {

@@ -124,7 +124,7 @@ html,body {
 
 .display-stander {
 	position: absolute;
-	bottom: -32px;
+	bottom: -2px;
 	left: 50%;
 	transform: translate(-50%,100%);
 	width: 20%;
@@ -132,7 +132,7 @@ html,body {
 	background-color: var(--display-stander-color);
 }
 .display-stander.focus {
-	bottom: -160px;
+	bottom: -10px;
 }
 
 .display-stander::after {

@@ -215,10 +215,15 @@ function sendQualityConsoleCommands(descriptor) {
 function setOverlay(htmlClass, htmlElement, onClickFunction) {
 	var videoPlayOverlay = document.getElementById('videoPlayOverlay');
 	if (!videoPlayOverlay) {
-		var playerDiv = document.getElementById('player');
+		// var playerDiv = document.getElementById('player');
+		var screenDiv = document.getElementById('screenWrapper');
 		videoPlayOverlay = document.createElement('div');
 		videoPlayOverlay.id = 'videoPlayOverlay';
-		playerDiv.appendChild(videoPlayOverlay);
+		videoPlayOverlay.style.position = 'absolute'
+		videoPlayOverlay.style.zIndex = '3'
+		videoPlayOverlay.style.top = '0'
+		videoPlayOverlay.style.left = '0'
+		screenDiv.appendChild(videoPlayOverlay);
 	}
 
 	// Remove existing html child elements so we can add the new one
@@ -383,6 +388,8 @@ var VideoEncoderQP = "N/A";
 
 function setupWebRtcPlayer(htmlElement, config) {
 	webRtcPlayerObj = new webRtcPlayer({ peerConnectionOptions: config.peerConnectionOptions });
+	webRtcPlayerObj.video.style.left = '0'
+	webRtcPlayerObj.video.style.zIndex = '999'
 	htmlElement.appendChild(webRtcPlayerObj.video);
 	htmlElement.appendChild(freezeFrameOverlay);
 
@@ -1607,8 +1614,9 @@ function connect() {
 
 // Config data received from WebRTC sender via the Cirrus web server
 function onConfig(config) {
-	let playerDiv = document.getElementById('player');
-	let playerElement = setupWebRtcPlayer(playerDiv, config);
+	// let playerDiv = document.getElementById('player');
+	let screenDiv = document.getElementById('screenWrapper');
+	let playerElement = setupWebRtcPlayer(screenDiv, config);
 	resizePlayerStyle();
 
 	switch (inputOptions.controlScheme) {

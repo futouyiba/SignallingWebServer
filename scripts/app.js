@@ -220,7 +220,7 @@ function setOverlay(htmlClass, htmlElement, onClickFunction) {
 		videoPlayOverlay = document.createElement('div');
 		videoPlayOverlay.id = 'videoPlayOverlay';
 		videoPlayOverlay.style.position = 'absolute'
-		videoPlayOverlay.style.zIndex = '3'
+		videoPlayOverlay.style.zIndex = '4'
 		videoPlayOverlay.style.top = '0'
 		videoPlayOverlay.style.left = '0'
 		screenDiv.appendChild(videoPlayOverlay);
@@ -389,7 +389,7 @@ var VideoEncoderQP = "N/A";
 function setupWebRtcPlayer(htmlElement, config) {
 	webRtcPlayerObj = new webRtcPlayer({ peerConnectionOptions: config.peerConnectionOptions });
 	webRtcPlayerObj.video.style.left = '0'
-	webRtcPlayerObj.video.style.zIndex = '999'
+	webRtcPlayerObj.video.style.zIndex = '3'
 	htmlElement.appendChild(webRtcPlayerObj.video);
 	htmlElement.appendChild(freezeFrameOverlay);
 

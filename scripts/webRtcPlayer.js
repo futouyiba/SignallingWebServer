@@ -73,8 +73,7 @@
         };
 
         handleOnTrack = function(e) {
-            console.log('handleOnTrack', e.streams);
-            console.error("OnTrack")
+            console.error('handleOnTrack', e.streams);
             //if (self.video.srcObject !== e.streams[0]) {
                 console.log('setting video stream from ontrack');
                 self.video.srcObject = e.streams[0];

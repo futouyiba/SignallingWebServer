@@ -61,7 +61,7 @@
         this.video = createWebRtcVideo();
 
         onsignalingstatechange = function(state) {
-            console.info('signaling state change:', state)
+            console.error('signaling state change:', state)
         };
 
         oniceconnectionstatechange = function(state) {
@@ -74,6 +74,7 @@
 
         handleOnTrack = function(e) {
             console.log('handleOnTrack', e.streams);
+            console.error("OnTrack")
             if (self.video.srcObject !== e.streams[0]) {
                 console.log('setting video stream from ontrack');
                 self.video.srcObject = e.streams[0];
@@ -110,13 +111,14 @@
         }
 
         onicecandidate = function (e) {
-			console.log('ICE candidate', e)
+			console.error('ICE candidate', e)
 			if (e.candidate && e.candidate.candidate) {
                 self.onWebRtcCandidate(e.candidate);
             }
         };
 
         handleCreateOffer = function (pc) {
+            console.error("CreateOffer")
             pc.createOffer(self.sdpConstraints).then(function (offer) {
                 offer.sdp = offer.sdp.replace("useinbandfec=1", "useinbandfec=1;stereo=1;maxaveragebitrate=128000");
             	pc.setLocalDescription(offer);
@@ -250,7 +252,7 @@
 
         //Called externaly when an answer is received from the server
         this.receiveAnswer = function(answer) {
-            console.log(`Received answer:\n${answer}`);
+            console.error(`Received answer:\n${JSON.stringify(answer)}`);
             var answerDesc = new RTCSessionDescription(answer);
             self.pcClient.setRemoteDescription(answerDesc);
         };

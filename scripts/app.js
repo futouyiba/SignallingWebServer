@@ -396,21 +396,24 @@ function setupWebRtcPlayer(htmlElement, config) {
 	webRtcPlayerObj.onWebRtcOffer = function (offer) {
 		if (ws && ws.readyState === WS_OPEN_STATE) {
 			let offerStr = JSON.stringify(offer);
-			console.log(`-> SS: offer:\n${offerStr}`);
+			console.error(`-> SS: offer:\n${offerStr}`);
 			ws.send(offerStr);
 		}
 	};
 
 	webRtcPlayerObj.onWebRtcCandidate = function (candidate) {
 		if (ws && ws.readyState === WS_OPEN_STATE) {
-			console.log(`-> SS: iceCandidate\n${JSON.stringify(candidate, undefined, 4)}`);
+			console.error(`-> SS: iceCandidate\n${JSON.stringify(candidate, undefined, 4)}`);
 			ws.send(JSON.stringify({ type: 'iceCandidate', candidate: candidate }));
 		}
 	};
 
 	webRtcPlayerObj.onVideoInitialised = function () {
+		console.error('onVideoInitialise')
 		if (ws && ws.readyState === WS_OPEN_STATE) {
+				console.error('onVideoInitialise:: readyState == OPEN_STATE');
 			if (shouldShowPlayOverlay) {
+				console.error('showPlayerOverlay');
 				showPlayOverlay();
 				resizePlayerStyle();
 			}

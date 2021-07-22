@@ -75,10 +75,10 @@
         handleOnTrack = function(e) {
             console.log('handleOnTrack', e.streams);
             console.error("OnTrack")
-            if (self.video.srcObject !== e.streams[0]) {
+            //if (self.video.srcObject !== e.streams[0]) {
                 console.log('setting video stream from ontrack');
                 self.video.srcObject = e.streams[0];
-            }
+            //}
         };
 
         setupDataChannel = function(pc, label, options) {

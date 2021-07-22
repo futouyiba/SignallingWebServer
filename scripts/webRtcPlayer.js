@@ -50,8 +50,17 @@
 
             video.id = "streamingVideo";
             video.playsInline = true;
+            video.addEventListener('loadstart', function(e){
+                console.error('loadstart')
+            }, true);
             video.addEventListener('loadedmetadata', function(e){
+                console.error('loadedmetadata')
+            }, true);
+
+            video.addEventListener('canplay', function(e){
+                console.error('on canplay')
                 if(self.onVideoInitialised){
+                    self.showPlayButton = true
                     self.onVideoInitialised();
                 }
             }, true);
@@ -78,6 +87,13 @@
                 console.log('setting video stream from ontrack');
                 self.video.srcObject = e.streams[0];
             //}
+            setTimeout(() => {
+                if (!self.showPlayButton) {
+                    alert("forcing to show play buton")
+                    self.showPlayButton = true
+                    self.onVideoInitialised()
+                }
+            }, 10000)
         };
 
         setupDataChannel = function(pc, label, options) {

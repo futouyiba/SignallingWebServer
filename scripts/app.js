@@ -491,8 +491,8 @@ function setupWebRtcPlayer(htmlElement, config) {
 		} else if (view[0] === ToClientMessageType.UnfreezeFrame) {
 			invalidateFreezeFrameOverlay();
 		} else if (view[0] === ToClientMessageType.VideoEncoderAvgQP) {
-			VideoEncoderQP = new TextDecoder("utf-16").decode(data.slice(1));
-			console.log(`received VideoEncoderAvgQP ${VideoEncoderQP}`);
+			// VideoEncoderQP = new TextDecoder("utf-16").decode(data.slice(1));
+			// console.log(`received VideoEncoderAvgQP ${VideoEncoderQP}`);
 		} else {
 			console.error(`unrecognized data received, packet ID ${view[0]}`);
 		}

@@ -88,17 +88,6 @@ html,body {
 	box-shadow: 0 0 15px var(--display-color);
 }
 
-.display.focus {
-	bottom: 50px;
-	left: 350px;
-	transform: translateX(0%);
-	width: 5760px;
-	height: 3240px;
-	padding: 50px 50px 150px 50px;
-	border-radius: 25px;
-	border: 10px solid var(--display-color);
-}
-
 .display-logo {
 	position: absolute;
 	bottom: 5px;
@@ -124,6 +113,7 @@ html,body {
 
 .display-stander {
 	position: absolute;
+	z-index: 2;
 	bottom: -2px;
 	left: 50%;
 	transform: translate(-50%,100%);
@@ -131,20 +121,17 @@ html,body {
 	height: 20%;
 	background-color: var(--display-stander-color);
 }
-.display-stander.focus {
-	bottom: -10px;
-}
 
 .display-stander::after {
 	content: '';
 	position: absolute;
+	z-index: 1;
 	bottom: 0;
 	left: 50%;
-	transform: translate(-50%,100%);
+	transform: translateX(-50%);
 	width: 200%;
-	height: 2%;
-	border-radius: 10px 10px 2px 2px;
-	background-color: var(--display-color);
+	border: 5px solid transparent;
+	border-bottom: 10px solid var(--display-color);
 }
 
 .game {

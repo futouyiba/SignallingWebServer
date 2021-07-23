@@ -69,6 +69,25 @@ function focusOnAvatar(){
 	}
 }
 
+function showInFullScreen(){
+	let screenDiv = document.getElementById('screenWrapper');
+	screenDiv.removeChild(webRtcPlayerObj.video)
+	screenDiv.removeChild(freezeFrameOverlay)
+	document.body.appendChild(webRtcPlayerObj.video)
+	document.body.appendChild(freezeFrameOverlay);
+	resizePlayerStyle();
+}
+
+function showInDisplay(){
+	document.body.removeChild(webRtcPlayerObj.video)
+	document.body.removeChild(freezeFrameOverlay);
+	let screenDiv = document.getElementById('screenWrapper');
+	screenDiv.appendChild(webRtcPlayerObj.video)
+	screenDiv.appendChild(freezeFrameOverlay)
+	resizePlayerStyle();
+
+}
+
 function setupHtmlEvents() {
 	//Window events
 	window.addEventListener('resize', resizePlayerStyle, true);
@@ -81,8 +100,12 @@ function setupHtmlEvents() {
 	let resizeCheckBox = document.getElementById('enlarge-display-to-fill-window-tgl');
 	if (resizeCheckBox !== null) {
 		resizeCheckBox.onchange = function (event) {
-			//todo
-			focusOnAvatar()
+			// focusOnAvatar()
+			if (resizeCheckBox.checked){
+				showInFullScreen()
+			} else {
+				showInDisplay()
+			}
 			// resizePlayerStyle();
 		};
 	}
@@ -388,8 +411,13 @@ var VideoEncoderQP = "N/A";
 
 function setupWebRtcPlayer(htmlElement, config) {
 	webRtcPlayerObj = new webRtcPlayer({ peerConnectionOptions: config.peerConnectionOptions });
-	webRtcPlayerObj.video.style.left = '0'
+	webRtcPlayerObj.video.style.position = 'absolute'
 	webRtcPlayerObj.video.style.zIndex = '3'
+	webRtcPlayerObj.video.style.top = '0'
+	webRtcPlayerObj.video.style.left = '0'
+	webRtcPlayerObj.video.style.width = '100%'
+	webRtcPlayerObj.video.style.height = '100%'
+	webRtcPlayerObj.video.style.background = 'black'
 	htmlElement.appendChild(webRtcPlayerObj.video);
 	htmlElement.appendChild(freezeFrameOverlay);
 
